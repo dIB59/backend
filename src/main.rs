@@ -1,9 +1,10 @@
 use actix_web::{App, HttpServer, web, HttpRequest, HttpResponse};
 use actix_web::web::Payload;
 use actix_web_actors::ws;
+use ws_health_handler::HeathSocket;
+
 
 mod ws_health_handler;
-use ws_health_handler::HeathSocket;
 
 async fn health_handler(req: HttpRequest, stream: Payload) -> Result<HttpResponse, actix_web::Error> {
     ws::start(HeathSocket {}, &req, stream)
