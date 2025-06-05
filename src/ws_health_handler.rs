@@ -3,10 +3,7 @@ use actix_web_actors::ws;
 use actix::{Actor, StreamHandler};
 
 
-pub struct HeathSocket{
-    channel: String,
-    state: Data<i32>,
-}
+pub struct HeathSocket{}
 
 impl Actor for HeathSocket {
     type Context = ws::WebsocketContext<Self>;
