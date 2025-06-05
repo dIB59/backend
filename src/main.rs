@@ -14,7 +14,7 @@ async fn health_handler(req: HttpRequest, stream: Payload) -> Result<HttpRespons
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
-            .route("/ws", web::get().to(health_handler))
+            .route("/ws/health", web::get().to(health_handler))
             .service(web::resource("/").to(|| async {
                 HttpResponse::Ok().body("Welcome to the WebSocket server!")
             }))

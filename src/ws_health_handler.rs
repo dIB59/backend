@@ -1,8 +1,12 @@
+use actix_web::web::Data;
 use actix_web_actors::ws;
 use actix::{Actor, StreamHandler};
 
 
-pub struct HeathSocket;
+pub struct HeathSocket{
+    channel: String,
+    state: Data<i32>,
+}
 
 impl Actor for HeathSocket {
     type Context = ws::WebsocketContext<Self>;
@@ -20,6 +24,10 @@ impl StreamHandler<Result<ws::Message, ws::ProtocolError>> for HeathSocket {
                 ctx.text(format!("Echo: {}", text));
             }
             Ok(ws::Message::Ping(msg)) => ctx.pong(&msg),
+            Ok(ws::Message::Close(close)) => {
+                println!("Client disconnected: {:?}", close);
+                ctx.close(close);
+            }
             _ => (),
         }
     }
