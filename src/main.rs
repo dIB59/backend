@@ -1,7 +1,6 @@
 use std::sync::Mutex;
 
 use actix_web::{App, HttpServer, web};
-use actix_web::web::Data;
 
 
 mod ws_health_handler;

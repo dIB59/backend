@@ -17,7 +17,7 @@ impl HeathSocket {
     pub fn new(state: web::Data<ConnectionState>) -> Self {
         Self { state }
     }
-}
+} 
 
 impl Actor for HeathSocket {
     type Context = ws::WebsocketContext<Self>;
